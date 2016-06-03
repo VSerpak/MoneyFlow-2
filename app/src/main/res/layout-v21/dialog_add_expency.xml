@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="horizontal"
+    android:measureWithLargestChild="false"
+    android:nestedScrollingEnabled="false">
+
+    <AutoCompleteTextView
+        android:id="@+id/acNameOfExpense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:elegantTextHeight="true"
+        android:hint="@string/hint_name"
+        android:inputType="textNoSuggestions"
+        android:layout_marginLeft="20dp" />
+
+    <EditText
+        android:id="@+id/etVolumeOfExpency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:elegantTextHeight="true"
+        android:hint="@string/hint_volume"
+        android:inputType="numberDecimal"
+        android:layout_marginLeft="20dp" />
+
+    <CheckBox
+        android:id="@+id/chbCriticalExpense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/critical"
+        android:layout_marginLeft="20dp" />
+</LinearLayout>

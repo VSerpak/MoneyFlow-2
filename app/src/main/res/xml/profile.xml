@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="@string/pref_key_account_info_settings"
+        android:title="@string/pref_category_account_info">
+
+        <EditTextPreference
+            android:inputType="textPassword"
+
+            android:key="@string/pref_key_login"
+            android:title="@string/pref_title_login" />
+        <!--android:icon="@mipmap/ic_contacts_black"-->
+        <!--android:summary="@string/pref_summary_login"-->
+        <EditTextPreference
+            android:inputType="textPassword"
+            android:key="@string/pref_key_password"
+
+            android:title="@string/pref_title_password" />
+        <!--android:summary="@string/pref_summary_password_preference"-->
+        <EditTextPreference
+            android:inputType="textEmailAddress"
+            android:key="@string/pref_key_email"
+            android:title="@string/pref_title_email" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/pref_key_person_info_settings"
+        android:title="@string/personal_data_preference_category">
+
+        <EditTextPreference
+            android:inputType="textPersonName"
+            android:key="@string/pref_key_ame"
+            android:title="@string/pref_title_name" />
+
+        <EditTextPreference
+            android:inputType="textPersonName"
+            android:key="@string/pref_key_last_name"
+            android:title="@string/pref_title_last_name" />
+
+        <EditTextPreference
+            android:inputType="textAutoCorrect"
+            android:key="@string/pref_key_sex"
+            android:title="@string/pref_title_sex"/>
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>
