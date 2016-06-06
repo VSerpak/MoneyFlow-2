@@ -38,8 +38,8 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.InnerV
 
         holder.tvName.setText(mCursor.getString(mCursor.getColumnIndex(Prefs.EXPENSE_NAMES_FIELD_NAME)));
 
-        holder.tvVolume.setText(mCursor.getString(mCursor.getColumnIndex(Prefs.EXPENSE_FIELD_VOLUME)));
-        holder.tvDate.setText(mCursor.getString(mCursor.getColumnIndex(Prefs.EXPENSE_FIELD_DATE)));
+        holder.tvVolume.setText(mCursor.getString(mCursor.getColumnIndex(Prefs.EXPENSES_FIELD_VOLUME)));
+        holder.tvDate.setText(mCursor.getString(mCursor.getColumnIndex(Prefs.EXPENSES_FIELD_DATE)));
 
     }
 
@@ -48,7 +48,7 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.InnerV
         return mCursor.getCount();
     }
 
-    public class InnerViewHolder extends RecyclerView.ViewHolder {
+    public  class InnerViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvName;
         public TextView tvVolume;

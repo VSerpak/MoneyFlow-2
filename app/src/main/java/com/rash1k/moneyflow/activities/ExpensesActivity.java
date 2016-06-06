@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import com.rash1k.moneyflow.R;
 import com.rash1k.moneyflow.adapters.ExpensesAdapter;
 import com.rash1k.moneyflow.util.Prefs;
@@ -13,7 +14,7 @@ public class ExpensesActivity extends AppCompatActivity {
 
     private RecyclerView rvExpenses;
 
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses);

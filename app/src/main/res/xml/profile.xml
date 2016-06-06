@@ -38,7 +38,10 @@
             android:key="@string/pref_key_last_name"
             android:title="@string/pref_title_last_name" />
 
-        <EditTextPreference
+        <SwitchPreference
+            android:enabled="true"
+            android:summaryOn="@string/pref_summary_sex_on"
+            android:summaryOff="@string/pref_summary_sex_off"
             android:inputType="textAutoCorrect"
             android:key="@string/pref_key_sex"
             android:title="@string/pref_title_sex"/>

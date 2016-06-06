@@ -33,7 +33,7 @@ public class ProfileActivity extends PreferenceActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            String summary = sharedPreferences.getString(key, getResources().getString(R.string.pref_summary_login));
+            String summary = sharedPreferences.getString(key, getString(R.string.pref_summary_login));
 
             EditTextPreference editTextPreference = (EditTextPreference) findPreference(key);
             editTextPreference.setSummary(summary);

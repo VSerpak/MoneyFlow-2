@@ -28,6 +28,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.DashboardActivity" />
         </activity>
+
+        <activity
+            android:name=".activities.IncomesActivity"
+            android:parentActivityName=".activities.DashboardActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.DashboardActivity" />
+
+        </activity>
+
+
         <activity
             android:name=".activities.ProfileActivity"
             android:label="@string/title_activity_profile" />
@@ -42,6 +54,7 @@
             android:enabled="true"
             android:exported="false" />
 
-          </application>
+
+    </application>
 
 </manifest>

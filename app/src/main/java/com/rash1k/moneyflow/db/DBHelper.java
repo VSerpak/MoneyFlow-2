@@ -22,9 +22,9 @@ public class DBHelper extends SQLiteOpenHelper {
                     + " ( %s integer primary key autoincrement, %s integer," +
                     " %s double, %s text);",
             Prefs.FIELD_ID,
-            Prefs.EXPENSE_FIELD_ID_PASSIVE,
-            Prefs.EXPENSE_FIELD_VOLUME,
-            Prefs.EXPENSE_FIELD_DATE);
+            Prefs.EXPENSES_FIELD_ID_PASSIVE,
+            Prefs.EXPENSES_FIELD_VOLUME,
+            Prefs.EXPENSES_FIELD_DATE);
 
     /*
 Table expense_names
@@ -86,6 +86,8 @@ Table expense_names
 
         if (oldVersion < newVersion) {
             db.execSQL(CREATE_TABLE_EXPENSE_NAMES);
+            db.execSQL(CREATE_TABLE_INCOMES);
+            db.execSQL(CREATE_TABLE_INCOME_NAMES);
         } else {
             Log.d(Prefs.LOG_TAG, "You have current version");
         }

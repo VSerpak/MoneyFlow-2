@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,10 +15,17 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.rash1k.moneyflow.R;
+import com.rash1k.moneyflow.adapters.DashboardPagerAdapter;
 import com.rash1k.moneyflow.dialogs.AddNewExpenseDialog;
+import com.rash1k.moneyflow.dialogs.AddNewIncomeDialog;
 import com.rash1k.moneyflow.util.Prefs;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
+
+    //    Test
+    DashboardPagerAdapter dashboardPagerAdapter;
+    ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +33,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        dashboardPagerAdapter = new DashboardPagerAdapter(this, getSupportFragmentManager());
+        viewPager = (ViewPager) findViewById(R.id.vpDashboard);
+        viewPager.setAdapter(dashboardPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDashBoard);
+        tabLayout.setupWithViewPager(viewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +52,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         });
 
         findViewById(R.id.btnDashBoardShowExpenses).setOnClickListener(this);
+
 
     }
 
@@ -54,11 +72,12 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 //Toast.makeText(this, "Click on expense", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_expenses_reduce:
-
+                AddNewIncomeDialog addNewIncomeDialog = new AddNewIncomeDialog();
+                addNewIncomeDialog.show(getSupportFragmentManager(), "addIncome");
                 break;
 
             case R.id.item_user_profile:
-                startActivity(new Intent(this,ProfileActivity.class));
+                startActivity(new Intent(this, ProfileActivity.class));
                 break;
         }
         return true;
@@ -98,6 +117,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 startActivity(intent);
                 break;
 
+            // TODO: 04.06.2016 Add btnDashBoardShowIncomes.
         }
     }
 }

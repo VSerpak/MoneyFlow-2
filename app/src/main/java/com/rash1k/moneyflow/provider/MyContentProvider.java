@@ -36,6 +36,7 @@ public class MyContentProvider extends ContentProvider {
         uriMatcher.addURI(Prefs.URI_INCOMES_AUTHORITIES, Prefs.URI_INCOMES_PATH, URI_INCOMES_CODE);
 
         uriMatcher.addURI(Prefs.URI_INCOME_NAMES_AUTHORITIES, Prefs.URI_INCOME_NAMES_PATH, URI_INCOME_NAMES_CODE);
+        uriMatcher.addURI(Prefs.URI_INCOME_NAMES_AUTHORITIES, Prefs.URI_ALL_INCOMES_PATH, URI_RAW_QUERY_ALL_INCOMES_CODE);
     }
 
     public MyContentProvider() {
@@ -67,6 +68,7 @@ public class MyContentProvider extends ContentProvider {
                 uri = insertUri(uri, Prefs.TABLE_NAME_INCOME_NAMES, values);
         }
         getContext().getContentResolver().notifyChange(uri, null);
+        database.close();
         return uri;
     }
 
@@ -91,8 +93,8 @@ public class MyContentProvider extends ContentProvider {
                         selection, selectionArgs, null, null, sortOrder);
                 break;
             case URI_RAW_QUERY_ALL_EXPENSES_CODE:
-                cursor = queryCursorBuilder(Prefs.RAW_QUERY_ALL_EXPENSES_2,projection,selection,
-                        selectionArgs,sortOrder);
+                cursor = queryCursorBuilder(Prefs.RAW_QUERY_ALL_EXPENSES_2, projection, selection,
+                        selectionArgs, sortOrder);
                 break;
             case URI_INCOMES_CODE:
                 cursor = database.query(Prefs.TABLE_NAME_INCOMES, projection, selection, selectionArgs,
@@ -103,15 +105,14 @@ public class MyContentProvider extends ContentProvider {
                         selectionArgs, null, null, sortOrder);
                 break;
             case URI_RAW_QUERY_ALL_INCOMES_CODE:
-                cursor = queryCursorBuilder(Prefs.RAW_QUERY_ALL_INCOMES,projection,selection,
-                        selectionArgs,sortOrder);
+                cursor = queryCursorBuilder(Prefs.RAW_QUERY_ALL_INCOMES, projection, selection,
+                        selectionArgs, sortOrder);
                 break;
             default:
                 throw new UnsupportedOperationException("Non support URI");
         }
 
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
-
         return cursor;
     }
 
@@ -138,15 +139,18 @@ public class MyContentProvider extends ContentProvider {
                         selectionArgs);
                 break;
             case URI_INCOMES_CODE:
-                updateId = database.update(Prefs.TABLE_NAME_INCOMES,values,selection,selectionArgs);
+                updateId = database.update(Prefs.TABLE_NAME_INCOMES, values, selection, selectionArgs);
                 break;
             case URI_INCOME_NAMES_CODE:
 
-                updateId = database.update(Prefs.TABLE_NAME_INCOME_NAMES,values,selection,selectionArgs);
+                updateId = database.update(Prefs.TABLE_NAME_INCOME_NAMES, values, selection, selectionArgs);
                 break;
             default:
                 throw new UnsupportedOperationException("Not yet implemented");
         }
+        database.close();
+        getContext().getContentResolver().notifyChange(uri, null);
+
         return updateId;
         // TODO: Implement this to handle requests to update one or more rows.
     }
@@ -172,6 +176,8 @@ public class MyContentProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Input correct URI");
         }
+        database.close();
+        getContext().getContentResolver().notifyChange(uri, null);
         return deleteId;
 
 

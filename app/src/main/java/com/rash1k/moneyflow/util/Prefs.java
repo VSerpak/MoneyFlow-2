@@ -2,7 +2,7 @@ package com.rash1k.moneyflow.util;
 
 import android.net.Uri;
 
-public class Prefs {
+public final class Prefs {
 
     //    The Log constance
     public static final String LOG_TAG = "MoneyFlow";
@@ -14,7 +14,7 @@ public class Prefs {
             Prefs.TABLE_NAME_EXPENSE_NAMES + "." +
             Prefs.FIELD_ID + " = " +
             Prefs.TABLE_NAME_EXPENSES + "." +
-            Prefs.EXPENSE_FIELD_ID_PASSIVE + ");";
+            Prefs.EXPENSES_FIELD_ID_PASSIVE + ");";
 
     public static final String RAW_QUERY_ALL_INCOMES = Prefs.TABLE_NAME_INCOMES + " INNER JOIN " +
             Prefs.TABLE_NAME_INCOME_NAMES + " ON (" + Prefs.TABLE_NAME_INCOME_NAMES + "." +
@@ -39,9 +39,9 @@ public class Prefs {
     //The Table Expenses:
 
     public static final String TABLE_NAME_EXPENSES = "expenses";
-    public static final String EXPENSE_FIELD_ID_PASSIVE = "id_passive";
-    public static final String EXPENSE_FIELD_VOLUME = "volume";
-    public static final String EXPENSE_FIELD_DATE = "date";
+    public static final String EXPENSES_FIELD_ID_PASSIVE = "id_passive";
+    public static final String EXPENSES_FIELD_VOLUME = "volume";
+    public static final String EXPENSES_FIELD_DATE = "date";
 
     //The Table Expense Names
     public static final String TABLE_NAME_EXPENSE_NAMES = "expense_names";
@@ -93,6 +93,10 @@ public class Prefs {
     public static final String URI_INCOME_NAMES_PATH = "income_names";
     public static final Uri URI_INCOME_NAMES = Uri.parse(URI_SCHEMA_PROVIDER + URI_INCOME_NAMES_AUTHORITIES + "/" + URI_INCOMES_PATH);
 
+    public static final String URI_ALL_INCOMES_PATH = "all_incomes";
+    public static final Uri URI_ALL_INCOMES = Uri.parse(URI_SCHEMA_PROVIDER + URI_INCOME_NAMES_AUTHORITIES + "/" + URI_ALL_INCOMES_PATH);
+
     //Loader Constants
     public static final int ID_LOADER_EXPENSE_NAMES = 1;
+    public static final int ID_LOADER_INCOME_NAMES = 1;
 }

@@ -107,4 +107,13 @@
     <string name="pref_key_sex">sex</string>
     <string name="pref_title_sex">Sex</string>
     <string name="item_menu_user_profile_tittle">Account info</string>
+    <string name="title_tab_cash_flow">CashFlow</string>
+    <string name="title_tab_expenses">Expenses</string>
+    <string name="title_tab_incomes">Incomes</string>
+    <string name="message_add_new_income_dialog">Add new income</string>
+    <string name="title_add_new_income_dialog">Add income</string>
+    <string name="positive_button_add_new_income_dialog">Add</string>
+    <string name="negative_button_add_new_income_dialog">Dismiss</string>
+    <string name="pref_summary_sex_on">Male</string>
+    <string name="pref_summary_sex_off">Female</string>
 </resources>
