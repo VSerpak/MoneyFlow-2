@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,13 +26,13 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     //    Test
     DashboardPagerAdapter dashboardPagerAdapter;
     ViewPager viewPager;
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -62,6 +63,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         return true;
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -119,5 +124,22 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
             // TODO: 04.06.2016 Add btnDashBoardShowIncomes.
         }
+    }
+
+    public void setFragmentInfo(int position){
+        switch (position){
+            case DashboardPagerAdapter.FRAGMENT_CASH_FLOW:
+                toolbar.setTitle(R.string.title_tab_cash_flow);
+                break;
+            case DashboardPagerAdapter.FRAGMENT_EXPENSES:
+                toolbar.setTitle(R.string.title_tab_expenses);
+                break;
+            case DashboardPagerAdapter.FRAGMENT_INCOMES:
+                toolbar.setTitle(R.string.title_tab_incomes);
+                break;
+
+        }
+        setSupportActionBar(toolbar);
+
     }
 }
