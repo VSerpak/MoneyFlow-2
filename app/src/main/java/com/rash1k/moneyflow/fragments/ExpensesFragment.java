@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rash1k.moneyflow.R;
 import com.rash1k.moneyflow.util.Prefs;
 
 import java.util.HashMap;
@@ -19,15 +20,15 @@ import java.util.HashMap;
 public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCallbacks<HashMap<String, String>> {
 
     private static final String CURRENT_MONTH = "current";
-    TextView tvExpensesSummary;
+    TextView tvCurrentFragmentExpenses;
 
-    HashMap<String, String> result;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(android.R.layout.simple_list_item_1, container, false);
-        tvExpensesSummary = (TextView) view.findViewById(android.R.id.text1);
+        View view = inflater.inflate(R.layout.fragment_expenses, container, false);
+        tvCurrentFragmentExpenses = (TextView) view.findViewById(R.id.tvCurrentFragmentExpenses);
 
         getActivity().getSupportLoaderManager().initLoader(1, null, this);
         return view;
@@ -38,12 +39,12 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
     public Loader<HashMap<String, String>> onCreateLoader(int id, Bundle args) {
 
 
-
-        return new HashMapLoader(getActivity(), result);
+        return new HashMapLoader(getActivity());
     }
 
     @Override
     public void onLoadFinished(Loader<HashMap<String, String>> loader, HashMap<String, String> data) {
+            tvCurrentFragmentExpenses.setText(data.get(CURRENT_MONTH));
 
     }
 
@@ -52,10 +53,10 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
 
     }
 
-    public  class HashMapLoader extends Loader<HashMap<String, String>> {
+    private static class HashMapLoader extends Loader<HashMap<String, String>> {
+        HashMap<String, String> result;
 
-
-        public HashMapLoader(Context context, HashMap<String, String> result) {
+        public HashMapLoader(Context context) {
             super(context);
             result = new HashMap<>();
         }
@@ -79,7 +80,6 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
             do {
                 value += cursor.getInt(cursor.getColumnIndex(Prefs.EXPENSES_FIELD_VOLUME));
             } while (cursor.moveToNext());
-
 
 
             result.put(CURRENT_MONTH, Integer.toString(value));
