@@ -23,7 +23,6 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
     TextView tvCurrentFragmentExpenses;
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(Loader<HashMap<String, String>> loader, HashMap<String, String> data) {
-            tvCurrentFragmentExpenses.setText(data.get(CURRENT_MONTH));
+        tvCurrentFragmentExpenses.setText(data.get(CURRENT_MONTH));
 
     }
 
@@ -73,17 +72,22 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
 
             Cursor cursor = getContext().getContentResolver().query(Prefs.URI_EXPENSES, new String[]{Prefs.EXPENSES_FIELD_VOLUME}, null, null, null);
             cursor.moveToFirst();
+            if (cursor != null) {
+                if (cursor.getCount() != 0) {
+                    int value = 0;
+
+                    do {
+
+                        value += cursor.getInt(cursor.getColumnIndex(Prefs.EXPENSES_FIELD_VOLUME));
+                    } while (cursor.moveToNext());
 
 
-            int value = 0;
-
-            do {
-                value += cursor.getInt(cursor.getColumnIndex(Prefs.EXPENSES_FIELD_VOLUME));
-            } while (cursor.moveToNext());
-
-
-            result.put(CURRENT_MONTH, Integer.toString(value));
-            deliverResult(result);
+                    result.put(CURRENT_MONTH, Integer.toString(value));
+                    deliverResult(result);
+                } else {
+                    result.put(CURRENT_MONTH, "0");
+                }
+            }
         }
     }
 }
