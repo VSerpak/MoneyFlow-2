@@ -136,6 +136,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 Log.d(Prefs.LOG_TAG, "--- EXPENSES_NAMES Table ---");
                 c = getContentResolver().query(Prefs.URI_EXPENSES_NAMES, null, null, null, null);
                 logCursor(c);
+                c = getContentResolver().query(Prefs.URI_EXPENSES, null, null, null, null);
+                logCursor(c);
                 c.close();
                 break;
 

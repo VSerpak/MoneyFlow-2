@@ -19,10 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="153dp"/>
-
-
-
+        android:layout_marginTop="153dp"
+        android:onClick="onClick"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vpDashboard"

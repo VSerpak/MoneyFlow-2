@@ -16,6 +16,7 @@ import com.rash1k.moneyflow.R;
 import com.rash1k.moneyflow.activities.DashboardActivity;
 import com.rash1k.moneyflow.adapters.DashboardPagerAdapter;
 import com.rash1k.moneyflow.util.Prefs;
+import com.rash1k.moneyflow.views.RoundChart;
 
 import java.util.HashMap;
 
@@ -23,6 +24,7 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
 
     private static final String CURRENT_MONTH = "current";
     TextView tvCurrentFragmentExpenses;
+    RoundChart rcExpenses;
 
 
     @Nullable
@@ -33,6 +35,8 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
 
         View view = inflater.inflate(R.layout.fragment_expenses, container, false);
         tvCurrentFragmentExpenses = (TextView) view.findViewById(R.id.tvCurrentFragmentExpenses);
+
+        rcExpenses = (RoundChart) view.findViewById(R.id.rcExpenses);
 
         getActivity().getSupportLoaderManager().initLoader(1, null, this);
         return view;
@@ -50,6 +54,7 @@ public class ExpensesFragment extends Fragment implements LoaderManager.LoaderCa
     public void onLoadFinished(Loader<HashMap<String, String>> loader, HashMap<String, String> data) {
         tvCurrentFragmentExpenses.setText(data.get(CURRENT_MONTH));
 
+        rcExpenses.setValues(100,30);
     }
 
     @Override

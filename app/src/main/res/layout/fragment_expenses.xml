@@ -2,10 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
     <TextView
         android:id="@+id/tvCurrentFragmentExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.rash1k.moneyflow.views.RoundChart
+        android:id="@+id/rcExpenses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -58,7 +58,7 @@ public class AddNewExpenseDialog extends DialogFragment implements LoaderManager
                     }
                 });
 
-        getActivity().getSupportLoaderManager().initLoader(Prefs.ID_LOADER_EXPENSE_NAMES, null, this);
+  //      getActivity().getSupportLoaderManager().initLoader(Prefs.ID_LOADER_EXPENSE_NAMES, null, this);
         return builder.create();
     }
 
